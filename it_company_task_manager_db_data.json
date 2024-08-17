@@ -1,0 +1,350 @@
+[
+    {
+        "model": "task_manager.position",
+        "pk": 1,
+        "fields": {
+            "name": "Developer"
+        }
+    },
+    {
+        "model": "task_manager.position",
+        "pk": 2,
+        "fields": {
+            "name": "Project Manager"
+        }
+    },
+    {
+        "model": "task_manager.position",
+        "pk": 3,
+        "fields": {
+            "name": "QA"
+        }
+    },
+    {
+        "model": "task_manager.position",
+        "pk": 4,
+        "fields": {
+            "name": "Designer"
+        }
+    },
+    {
+        "model": "task_manager.position",
+        "pk": 5,
+        "fields": {
+            "name": "DevOps"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 1,
+        "fields": {
+            "name": "New feature"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 2,
+        "fields": {
+            "name": "Refactoring"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 3,
+        "fields": {
+            "name": "Planning"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 4,
+        "fields": {
+            "name": "Management"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 5,
+        "fields": {
+            "name": "Testing"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 6,
+        "fields": {
+            "name": "Improvement"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 7,
+        "fields": {
+            "name": "Design"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 8,
+        "fields": {
+            "name": "Automation"
+        }
+    },
+    {
+        "model": "task_manager.tasktype",
+        "pk": 9,
+        "fields": {
+            "name": "Maintenance"
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 1,
+        "fields": {
+            "username": "john_doe",
+            "password": "pbkdf2_sha256$870000$4z93q7jptSj2Zclxh4Ek3u$Ohus+KnEUjEuWFDlZ3QLoA/KD8JlwTg43rCc1+Ahqms=",
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "johndoe@example.com",
+            "position": 1
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 2,
+        "fields": {
+            "username": "jane_smith",
+            "password": "pbkdf2_sha256$870000$cR69LUt8Sa8HbZP7PzZ74v$6kwobPY42DTijpOjK6YOZ7WbHbKmmfIqntf3gKuczq0=",
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "email": "janesmith@example.com",
+            "position": 2
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 3,
+        "fields": {
+            "username": "alice_johnson",
+            "password": "pbkdf2_sha256$870000$LzpuJMZ0hXNGG1VMwcTvn1$MY9CxZdEoq8XOMcffAUnrwLcvb0TnYPU6DqZsrmQ/9s=",
+            "first_name": "Alice",
+            "last_name": "Johnson",
+            "email": "alicejohnson@example.com",
+            "position": 3
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 4,
+        "fields": {
+            "username": "bob_brown",
+            "password": "pbkdf2_sha256$870000$bfXzfUKY2uK7H1gjxbcfPw$PhAJHwajdgEVJugJ8Zco+fsLpQvbY7y9mDEA+KdM4VU=",
+            "first_name": "Bob",
+            "last_name": "Brown",
+            "email": "bobbrown@example.com",
+            "position": 4
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 5,
+        "fields": {
+            "username": "charlie_davis",
+            "password": "pbkdf2_sha256$870000$d8Bf0hG70GhHFt4okAN9mt$Rdxym/81vEyOcNT9WQ/irtGduB3j/aiFXxBR/ga8O4Y=",
+            "first_name": "Charlie",
+            "last_name": "Davis",
+            "email": "charliedavis@example.com",
+            "position": 5
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 6,
+        "fields": {
+            "username": "david_wilson",
+            "password": "pbkdf2_sha256$870000$Mwg5wA2owAlNB5vGvAjvaM$80Of41WjCrpIfS6qg27bGEJqkVWNJMpqUFaKdySZ2xM=",
+            "first_name": "David",
+            "last_name": "Wilson",
+            "email": "davidwilson@example.com",
+            "position": 1
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 7,
+        "fields": {
+            "username": "eve_moore",
+            "password": "pbkdf2_sha256$870000$MAqShE5HsLOFW8Gt8aoC5M$aiNBoQnR41FFvWfsUSJvUL+2MJT7n8CaccfkQu6M/Zc=",
+            "first_name": "Eve",
+            "last_name": "Moore",
+            "email": "evemoore@example.com",
+            "position": 2
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 8,
+        "fields": {
+            "username": "frank_taylor",
+            "password": "pbkdf2_sha256$870000$92nnvEPcdJu2ublw3gwZyf$4gP06K+bJv27xLslcRB6g6P9+pJR/3mPP2KatfDfduI=",
+            "first_name": "Frank",
+            "last_name": "Taylor",
+            "email": "franktaylor@example.com",
+            "position": 3
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 9,
+        "fields": {
+            "username": "grace_anderson",
+            "password": "pbkdf2_sha256$870000$1OMniLtgogDtAbnYwjJdpi$TFyX2ABTepm9oj543YGzrsBsyZP1tMFrbwnyHEajwVw=",
+            "first_name": "Grace",
+            "last_name": "Anderson",
+            "email": "graceanderson@example.com",
+            "position": 4
+        }
+    },
+    {
+        "model": "task_manager.worker",
+        "pk": 10,
+        "fields": {
+            "username": "henry_thomas",
+            "password": "pbkdf2_sha256$870000$DHITcAclmpTyaZ5lIGYOaM$Tzwojt8Vl8TZxANdDEHRz+movcTXqDezP7pUtu4xTqQ=",
+            "first_name": "Henry",
+            "last_name": "Thomas",
+            "email": "henrythomas@example.com",
+            "position": 5
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 1,
+        "fields": {
+            "name": "Implement User Authentication",
+            "description": "Develop and integrate user authentication features, including registration and login functionality.",
+            "deadline": "2024-09-01T12:00:00Z",
+            "is_completed": false,
+            "priority": "HIGH",
+            "task_type": 1,
+            "assignees": [1, 6]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 2,
+        "fields": {
+            "name": "Refactor Legacy Code",
+            "description": "Improve and clean up old code to enhance maintainability and performance.",
+            "deadline": "2024-09-10T12:00:00Z",
+            "is_completed": false,
+            "priority": "MEDIUM",
+            "task_type": 2,
+            "assignees": [1, 6]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 3,
+        "fields": {
+            "name": "Create Project Plan",
+            "description": "Develop a detailed project plan with timelines, milestones, and resource allocation.",
+            "deadline": "2024-08-25T12:00:00Z",
+            "is_completed": false,
+            "priority": "HIGH",
+            "task_type": 3,
+            "assignees": [2]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 4,
+        "fields": {
+            "name": "Coordinate Team Meetings",
+            "description": "Schedule and lead regular team meetings to discuss progress and address issues.",
+            "deadline": "2024-08-30T12:00:00Z",
+            "is_completed": false,
+            "priority": "MEDIUM",
+            "task_type": 4,
+            "assignees": [7]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 5,
+        "fields": {
+            "name": "Write Test Cases",
+            "description": "Develop and document test cases based on project requirements and specifications.",
+            "deadline": "2024-09-05T12:00:00Z",
+            "is_completed": false,
+            "priority": "HIGH",
+            "task_type": 5,
+            "assignees": [3, 8]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 6,
+        "fields": {
+            "name": "Automate Test Scripts",
+            "description": "Create and maintain automated test scripts to improve testing efficiency.",
+            "deadline": "2024-09-15T12:00:00Z",
+            "is_completed": false,
+            "priority": "MEDIUM",
+            "task_type": 6,
+            "assignees": [3]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 7,
+        "fields": {
+            "name": "Create Wireframes",
+            "description": "Design wireframes for new features or pages to outline layout and functionality.",
+            "deadline": "2024-08-20T12:00:00Z",
+            "is_completed": false,
+            "priority": "HIGH",
+            "task_type": 7,
+            "assignees": [4, 9]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 8,
+        "fields": {
+            "name": "Develop UI Mockups",
+            "description": "Create high-fidelity mockups of user interfaces, including visual design and branding.",
+            "deadline": "2024-08-28T12:00:00Z",
+            "is_completed": false,
+            "priority": "MEDIUM",
+            "task_type": 7,
+            "assignees": [9]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 9,
+        "fields": {
+            "name": "Set Up CI/CD Pipeline",
+            "description": "Configure and manage continuous integration and continuous deployment (CI/CD) pipelines.",
+            "deadline": "2024-09-10T12:00:00Z",
+            "is_completed": false,
+            "priority": "HIGH",
+            "task_type": 8,
+            "assignees": [5, 10]
+        }
+    },
+    {
+        "model": "task_manager.task",
+        "pk": 10,
+        "fields": {
+            "name": "Monitor System Performance",
+            "description": "Implement and monitor system performance metrics to ensure optimal operation.",
+            "deadline": "2024-09-20T12:00:00Z",
+            "is_completed": false,
+            "priority": "MEDIUM",
+            "task_type": 9,
+            "assignees": [5, 10]
+        }
+    }
+]
