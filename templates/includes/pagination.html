@@ -1,0 +1,42 @@
+{% load query_transform %}
+
+<section class="py-3">
+  <div class="container">
+    <div class="row justify-content-center py-1">
+      <div class="col-lg-4 d-flex justify-content-center">
+        {% if is_paginated %}
+          <ul class="pagination pagination-secondary mb-1">
+            {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?{% query_transform request page=page_obj.previous_page_number %}" aria-label="Previous">
+                  <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                </a>
+              </li>
+            {% endif %}
+            
+            <!-- Display page numbers -->
+            {% for num in paginator.page_range %}
+              {% if num == page_obj.number %}
+                <li class="page-item active">
+                  <a class="page-link" href="javascript:;">{{ num }}</a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="?{% query_transform request page=num %}">{{ num }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?{% query_transform request page=page_obj.next_page_number %}" aria-label="Next">
+                  <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
