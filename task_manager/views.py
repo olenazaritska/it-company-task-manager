@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
+from task_manager.forms import WorkerCreationForm
 from task_manager.models import Worker
 
 
@@ -29,3 +31,9 @@ class WorkerDetailView(generic.DetailView):
         context['pending_tasks'] = pending_tasks
 
         return context
+
+
+class WorkerCreateView(generic.CreateView):
+    model = Worker
+    form_class = WorkerCreationForm
+    success_url = reverse_lazy("task-manager:worker-list")
