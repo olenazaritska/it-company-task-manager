@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %} - Create team member {% endblock title %}
+
+{% block content %}
+  
+  <section class="py-sm-7 py-5 position-relative bg-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="text-center mb-4">Create New Worker</h3>
+              <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="d-flex justify-content-center">
+                  <input type="submit" value="Create Worker" class="btn btn-primary">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+{% endblock %}
