@@ -28,9 +28,9 @@
                 <!-- Action Buttons -->
                 <div class="d-flex">
                   {% if user.id == worker.id %}
-                    <a href="#" class="btn btn-primary me-2">Update Info</a>
+                    <a href="{% url 'task-manager:worker-update' worker.id %}" class="btn btn-primary me-2">Update Info</a>
                   {% endif %}
-                  <a href="#" class="btn btn-danger">Remove from the Team</a>
+                  <a href="{% url 'task-manager:worker-delete' worker.id %}" class="btn btn-danger">Remove from the Team</a>
                 </div>
               </div>
   
