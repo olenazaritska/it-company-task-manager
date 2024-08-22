@@ -1,8 +1,9 @@
+from django.http import request, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreationForm
+from task_manager.forms import WorkerForm
 from task_manager.models import Worker
 
 
@@ -35,5 +36,19 @@ class WorkerDetailView(generic.DetailView):
 
 class WorkerCreateView(generic.CreateView):
     model = Worker
-    form_class = WorkerCreationForm
+    form_class = WorkerForm
     success_url = reverse_lazy("task-manager:worker-list")
+
+
+class WorkerUpdateView(generic.UpdateView):
+    model = Worker
+    form_class = WorkerForm
+
+    def get_success_url(self):
+        return reverse_lazy("task-manager:worker-detail", kwargs={"pk": self.object.pk})
+
+    def dispatch(self, request, *args, **kwargs):
+        worker = self.get_object()
+        if worker.id != request.user.id:
+            return HttpResponseForbidden()
+        return super().dispatch(request, *args, **kwargs)
