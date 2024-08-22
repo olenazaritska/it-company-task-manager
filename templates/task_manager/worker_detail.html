@@ -27,7 +27,9 @@
                 <h4 class="mb-0">{{ worker.first_name }} {{ worker.last_name }}</h4>
                 <!-- Action Buttons -->
                 <div class="d-flex">
-                  <a href="#" class="btn btn-primary me-2">Update Info</a>
+                  {% if user.id == worker.id %}
+                    <a href="#" class="btn btn-primary me-2">Update Info</a>
+                  {% endif %}
                   <a href="#" class="btn btn-danger">Remove from the Team</a>
                 </div>
               </div>
