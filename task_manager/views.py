@@ -52,3 +52,8 @@ class WorkerUpdateView(generic.UpdateView):
         if worker.id != request.user.id:
             return HttpResponseForbidden()
         return super().dispatch(request, *args, **kwargs)
+
+
+class WorkerDeleteView(generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("task-manager:worker-list")
