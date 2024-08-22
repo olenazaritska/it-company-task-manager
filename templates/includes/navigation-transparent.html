@@ -7,9 +7,13 @@
       <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
         <ul class="navbar-nav navbar-nav-hover w-100">
           <li class="nav-item ms-lg-auto">
-            <a class="nav-link nav-link-icon me-2" href="#">
+            <!-- Logout Form -->
+            <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+              {% csrf_token %}
+            </form>
+            <a class="nav-link nav-link-icon me-2" href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="fa fa-sign-out me-1"></i>
-              <p class="d-inline text-sm z-index-1 font-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">Logout</p>
+              Logout
             </a>
           </li>
         </ul>
