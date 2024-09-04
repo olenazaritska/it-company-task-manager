@@ -73,3 +73,9 @@ class TaskCreateView(generic.CreateView):
         form = super().get_form(form_class)
         form.fields.pop('is_completed')
         return form
+
+
+class TaskUpdateView(generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("task-manager:task-list")
