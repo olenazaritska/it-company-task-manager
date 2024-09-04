@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerForm
+from task_manager.forms import WorkerForm, TaskForm
 from task_manager.models import Worker, Task
 
 
@@ -62,3 +62,14 @@ class WorkerDeleteView(generic.DeleteView):
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.select_related("task_type")
+
+
+class TaskCreateView(generic.CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("task-manager:task-list")
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields.pop('is_completed')
+        return form
