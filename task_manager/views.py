@@ -1,10 +1,10 @@
-from django.http import request, HttpResponseForbidden
+from django.http import HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
 from task_manager.forms import WorkerForm
-from task_manager.models import Worker
+from task_manager.models import Worker, Task
 
 
 def index(request):
@@ -57,3 +57,8 @@ class WorkerUpdateView(generic.UpdateView):
 class WorkerDeleteView(generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("task-manager:worker-list")
+
+
+class TaskListView(generic.ListView):
+    model = Task
+    queryset = Task.objects.select_related("task_type")
