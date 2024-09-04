@@ -63,6 +63,15 @@ class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.select_related("task_type")
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        completed_filter = self.request.GET.get('completed')
+        if completed_filter == 'true':
+            queryset = queryset.filter(is_completed=True)
+        elif completed_filter == 'false':
+            queryset = queryset.filter(is_completed=False)
+        return queryset
+
 
 class TaskCreateView(generic.CreateView):
     model = Task
