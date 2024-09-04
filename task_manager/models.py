@@ -24,6 +24,9 @@ class Task(models.Model):
     )
     assignees = models.ManyToManyField("Worker", related_name="tasks")
 
+    class Meta:
+        ordering = ["deadline"]
+
     def __str__(self):
         return self.name
 
@@ -43,7 +46,7 @@ class Worker(AbstractUser):
     )
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name} {self.last_name} ({self.position.name})"
 
 
 class Position(models.Model):
