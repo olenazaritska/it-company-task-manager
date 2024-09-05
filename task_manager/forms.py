@@ -11,6 +11,7 @@ class WorkerForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
         fields = UserCreationForm.Meta.fields + (
+            "email",
             "first_name",
             "last_name",
             "position",
