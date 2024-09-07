@@ -102,11 +102,18 @@
         "pk": 1,
         "fields": {
             "username": "john_doe",
-            "password": "pbkdf2_sha256$870000$4z93q7jptSj2Zclxh4Ek3u$Ohus+KnEUjEuWFDlZ3QLoA/KD8JlwTg43rCc1+Ahqms=",
+            "password": "pbkdf2_sha256$870000$fDlXIGXo8BzEiBpwlgdsjd$4kZVEjSo1llkGMOO9FArZ8aJR7mndRFEvygpv0N2j5M=",
             "first_name": "John",
             "last_name": "Doe",
             "email": "johndoe@example.com",
-            "position": 1
+            "position": 1,
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-01T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -118,7 +125,14 @@
             "first_name": "Jane",
             "last_name": "Smith",
             "email": "janesmith@example.com",
-            "position": 2
+            "position": 2,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-02T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -130,7 +144,14 @@
             "first_name": "Alice",
             "last_name": "Johnson",
             "email": "alicejohnson@example.com",
-            "position": 3
+            "position": 3,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-03T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -142,7 +163,14 @@
             "first_name": "Bob",
             "last_name": "Brown",
             "email": "bobbrown@example.com",
-            "position": 4
+            "position": 4,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-04T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -154,7 +182,14 @@
             "first_name": "Charlie",
             "last_name": "Davis",
             "email": "charliedavis@example.com",
-            "position": 5
+            "position": 5,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-05T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -166,7 +201,14 @@
             "first_name": "David",
             "last_name": "Wilson",
             "email": "davidwilson@example.com",
-            "position": 1
+            "position": 1,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-06T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -178,7 +220,14 @@
             "first_name": "Eve",
             "last_name": "Moore",
             "email": "evemoore@example.com",
-            "position": 2
+            "position": 2,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-07T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -190,7 +239,14 @@
             "first_name": "Frank",
             "last_name": "Taylor",
             "email": "franktaylor@example.com",
-            "position": 3
+            "position": 3,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-08T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -202,7 +258,14 @@
             "first_name": "Grace",
             "last_name": "Anderson",
             "email": "graceanderson@example.com",
-            "position": 4
+            "position": 4,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-09T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -214,7 +277,14 @@
             "first_name": "Henry",
             "last_name": "Thomas",
             "email": "henrythomas@example.com",
-            "position": 5
+            "position": 5,
+            "last_login": null,
+            "is_superuser": false,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-10T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
         }
     },
     {
@@ -222,9 +292,9 @@
         "pk": 1,
         "fields": {
             "name": "Implement User Authentication",
-            "description": "Develop and integrate user authentication features, including registration and login functionality.",
+            "description": "We need to implement user authentication to ensure a seamless login and registration experience. This task includes setting up user registration, login functionality, and session management. It’s important to handle password encryption securely, as well as allow users to reset their passwords. Make sure the user can easily navigate between the login and registration forms without confusion. Our goal is to create an intuitive and secure flow for user authentication. Testing is essential, so be sure to cover edge cases like incorrect passwords and invalid email addresses. In the end, we want to ensure everything runs smoothly on both desktop and mobile platforms.",
             "deadline": "2024-09-01T12:00:00Z",
-            "is_completed": false,
+            "is_completed": true,
             "priority": "HIGH",
             "task_type": 1,
             "assignees": [1, 6]
@@ -235,10 +305,10 @@
         "pk": 2,
         "fields": {
             "name": "Refactor Legacy Code",
-            "description": "Improve and clean up old code to enhance maintainability and performance.",
+            "description": "Our legacy code has served us well, but it’s time for a cleanup. This task involves refactoring the old codebase to make it more maintainable and performant. You’ll need to identify areas where the code can be optimized or simplified without changing its core functionality. This is an important step to ensure the long-term sustainability of the project. Pay close attention to sections that are frequently modified, as these are likely the most fragile. Additionally, we want to make sure that any changes are well-documented so that future developers understand the improvements. Once you’re done, run a comprehensive set of tests to confirm everything still works as expected.",
             "deadline": "2024-09-10T12:00:00Z",
             "is_completed": false,
-            "priority": "MEDIUM",
+            "priority": "LOW",
             "task_type": 2,
             "assignees": [1, 6]
         }
@@ -248,9 +318,9 @@
         "pk": 3,
         "fields": {
             "name": "Create Project Plan",
-            "description": "Develop a detailed project plan with timelines, milestones, and resource allocation.",
+            "description": "We need a solid project plan that outlines all key milestones, deadlines, and resource allocation. This plan should serve as the roadmap for the entire project. Be sure to break down the project into manageable phases with realistic deadlines for each phase. It’s important to allocate the right resources to the right tasks to avoid bottlenecks. The plan should also highlight potential risks and outline mitigation strategies. Once you’ve created a draft, review it with the team to ensure everyone is on the same page. With a clear plan in place, we’ll be able to move forward with confidence and focus.",
             "deadline": "2024-08-25T12:00:00Z",
-            "is_completed": false,
+            "is_completed": true,
             "priority": "HIGH",
             "task_type": 3,
             "assignees": [2]
@@ -261,7 +331,7 @@
         "pk": 4,
         "fields": {
             "name": "Coordinate Team Meetings",
-            "description": "Schedule and lead regular team meetings to discuss progress and address issues.",
+            "description": "Effective communication is key to our project’s success, and regular team meetings are a big part of that. You’ll be responsible for scheduling weekly meetings and ensuring that they run smoothly. During these meetings, we’ll discuss progress, blockers, and upcoming deadlines. Make sure to create a structured agenda so that the meetings stay focused and efficient. Additionally, it’s your job to keep track of any action items that come up and follow up with team members as needed. We want to create a culture of accountability and transparency within the team.",
             "deadline": "2024-08-30T12:00:00Z",
             "is_completed": false,
             "priority": "MEDIUM",
@@ -274,7 +344,7 @@
         "pk": 5,
         "fields": {
             "name": "Write Test Cases",
-            "description": "Develop and document test cases based on project requirements and specifications.",
+            "description": "Testing is a critical part of our development process. For this task, we need you to create comprehensive test cases that cover all project requirements and specifications. The test cases should be well-organized and easy to follow, ensuring that both manual and automated testers can execute them without confusion. Focus on covering both positive and negative test scenarios, especially edge cases that may not be immediately obvious. These test cases will form the backbone of our quality assurance process, ensuring that we deliver a reliable and bug-free product. Keep in mind that clear documentation is key to making the testing process efficient.",
             "deadline": "2024-09-05T12:00:00Z",
             "is_completed": false,
             "priority": "HIGH",
@@ -287,10 +357,10 @@
         "pk": 6,
         "fields": {
             "name": "Automate Test Scripts",
-            "description": "Create and maintain automated test scripts to improve testing efficiency.",
+            "description": "In order to speed up our testing process, we need to automate as much as possible. Your task is to create and maintain automated test scripts for our key features. This will allow us to run tests more frequently and catch issues early. Be sure to structure the scripts in a way that allows for easy maintenance and future expansion. Automation should focus on the most critical features and workflows. After writing the scripts, run them on different environments to ensure they work as expected.",
             "deadline": "2024-09-15T12:00:00Z",
-            "is_completed": false,
-            "priority": "MEDIUM",
+            "is_completed": true,
+            "priority": "LOW",
             "task_type": 6,
             "assignees": [3]
         }
@@ -300,9 +370,9 @@
         "pk": 7,
         "fields": {
             "name": "Create Wireframes",
-            "description": "Design wireframes for new features or pages to outline layout and functionality.",
+            "description": "We’re working on new features, and we need wireframes to visualize the layout and functionality. Your job is to design these wireframes based on the provided specifications. They should clearly outline the structure of the new pages, focusing on user experience. These wireframes will be used by the UI/UX team to create high-fidelity mockups. Be sure to collaborate with both the design and development teams to ensure the wireframes are feasible and align with the project goals. Once the wireframes are ready, present them to the team for feedback.",
             "deadline": "2024-08-20T12:00:00Z",
-            "is_completed": false,
+            "is_completed": true,
             "priority": "HIGH",
             "task_type": 7,
             "assignees": [4, 9]
@@ -313,10 +383,10 @@
         "pk": 8,
         "fields": {
             "name": "Develop UI Mockups",
-            "description": "Create high-fidelity mockups of user interfaces, including visual design and branding.",
+            "description": "Now that we have wireframes, it’s time to create high-fidelity UI mockups. These mockups should include detailed visual designs, taking into account the brand’s style guide. You’ll need to focus on creating a cohesive and visually appealing user interface that enhances the overall user experience. The mockups will serve as the blueprint for the front-end developers, so make sure every element is clearly defined. Pay special attention to mobile responsiveness, ensuring that the UI works across all screen sizes. Once complete, we’ll review the mockups and provide feedback for revisions.",
             "deadline": "2024-08-28T12:00:00Z",
             "is_completed": false,
-            "priority": "MEDIUM",
+            "priority": "LOW",
             "task_type": 7,
             "assignees": [9]
         }
@@ -326,7 +396,7 @@
         "pk": 9,
         "fields": {
             "name": "Set Up CI/CD Pipeline",
-            "description": "Configure and manage continuous integration and continuous deployment (CI/CD) pipelines.",
+            "description": "Setting up a continuous integration and continuous deployment (CI/CD) pipeline is a crucial step in automating our development process. The goal is to streamline how we build, test, and deploy code changes. You'll need to configure the pipeline to run automated tests after each commit and ensure deployments are smooth and error-free. Pay attention to the integration points between various tools and services. We need to make sure that the entire process is robust and scalable. Regular monitoring of the pipeline will be key to catching issues early on.",
             "deadline": "2024-09-10T12:00:00Z",
             "is_completed": false,
             "priority": "HIGH",
@@ -339,7 +409,7 @@
         "pk": 10,
         "fields": {
             "name": "Monitor System Performance",
-            "description": "Implement and monitor system performance metrics to ensure optimal operation.",
+            "description": "Our system performance is critical to providing a smooth user experience. For this task, you’ll be implementing and monitoring various performance metrics. You’ll need to gather data on system load, response times, and any potential bottlenecks. Regular monitoring will help us ensure that the system is running optimally. Should any issues arise, you’ll be responsible for identifying the root cause and coordinating with the team to implement fixes. This task will require ongoing attention, as system performance can fluctuate with traffic spikes and updates.",
             "deadline": "2024-09-20T12:00:00Z",
             "is_completed": false,
             "priority": "MEDIUM",
