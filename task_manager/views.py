@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerForm, TaskForm
+from task_manager.forms import TaskForm, WorkerCreationForm, WorkerUpdateForm
 from task_manager.models import Worker, Task
 
 
@@ -39,13 +39,13 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
-    form_class = WorkerForm
+    form_class = WorkerCreationForm
     success_url = reverse_lazy("task-manager:worker-list")
 
 
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
-    form_class = WorkerForm
+    form_class = WorkerUpdateForm
 
     def get_success_url(self):
         return reverse_lazy("task-manager:worker-detail", kwargs={"pk": self.object.pk})
