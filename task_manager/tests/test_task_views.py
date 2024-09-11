@@ -126,7 +126,10 @@ class TaskDeleteTests(TestCase):
     def test_correct_template_used(self):
         response = self.client.get(TASK_DELETE_URL)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "task_manager/task_confirm_delete.html")
+        self.assertTemplateUsed(
+            response,
+            "task_manager/task_confirm_delete.html"
+        )
 
     def test_task_deleted(self):
         response = self.client.post(TASK_DELETE_URL)

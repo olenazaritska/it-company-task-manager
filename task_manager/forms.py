@@ -44,7 +44,6 @@ class WorkerUpdateForm(forms.ModelForm):
             "position",
         )
 
-
     def clean_password1(self):
         password1 = self.cleaned_data.get("password1")
         if password1:
@@ -58,12 +57,15 @@ class WorkerUpdateForm(forms.ModelForm):
 
         if password1 or password2:
             if password1 != password2:
-                self.add_error('password1', "The two password fields must match.")
+                self.add_error(
+                    "password1",
+                    "The two password fields must match."
+                )
         return cleaned_data
 
     def save(self, commit=True):
         worker = super().save(commit=False)
-        password1 = self.cleaned_data.get('password1')
+        password1 = self.cleaned_data.get("password1")
 
         if password1:
             worker.password = make_password(password1)

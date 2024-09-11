@@ -1,5 +1,3 @@
-from multiprocessing.connection import Client
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -9,17 +7,17 @@ from task_manager.models import Task
 
 
 class AdminSiteTests(TestCase):
-    fixtures = ['it_company_task_manager_db_data.json']
+    fixtures = ["it_company_task_manager_db_data.json"]
 
     def convert_deadline(self, deadline):
-        formatted_date = formats.date_format(deadline, 'N j, Y')
+        formatted_date = formats.date_format(deadline, "N j, Y")
 
         if deadline.hour == 12 and deadline.minute == 0:
-            formatted_time = 'noon'
+            formatted_time = "noon"
         elif deadline.hour == 0 and deadline.minute == 0:
-            formatted_time = 'midnight'
+            formatted_time = "midnight"
         else:
-            formatted_time = formats.time_format(deadline, 'g:i a')
+            formatted_time = formats.time_format(deadline, "g:i a")
 
         formatted_datetime = f"{formatted_date}, {formatted_time}"
 
@@ -60,13 +58,21 @@ class AdminSiteTests(TestCase):
         url = reverse("admin:task_manager_task_changelist")
         response = self.client.get(url)
         self.assertContains(response, Task.objects.get(pk=1).name)
-        self.assertContains(response, self.convert_deadline(Task.objects.get(pk=1).deadline))
+        self.assertContains(
+            response,
+            self.convert_deadline(Task.objects.get(pk=1).deadline)
+        )
         self.assertContains(response, Task.objects.get(pk=1).is_completed)
         self.assertContains(response, Task.objects.get(pk=1).priority)
         self.assertContains(response, Task.objects.get(pk=1).task_type)
         self.assertContains(
             response,
-            ", ".join([f"{a.first_name} {a.last_name}" for a in Task.objects.get(pk=1).assignees.all()])
+            ", ".join(
+                [
+                    f"{a.first_name} {a.last_name}"
+                    for a in Task.objects.get(pk=1).assignees.all()
+                ]
+            )
         )
 
     def test_task_list_display_has_search_field(self):

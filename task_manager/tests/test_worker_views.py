@@ -42,29 +42,34 @@ class WorkerDetailTests(TestCase):
         self.assertTemplateUsed(response, "task_manager/worker_detail.html")
 
     def test_correct_task_count(self):
+        worker_tasks = get_user_model().objects.get(pk=1).tasks
         response = self.client.get(WORKER_DETAIL_URL)
         self.assertIn("completed_tasks_count", response.context)
         self.assertIn("pending_tasks_count", response.context)
         self.assertEqual(
             response.context["completed_tasks_count"],
-            get_user_model().objects.get(pk=1).tasks.filter(is_completed=True).count(),
+            worker_tasks.filter(is_completed=True).count(),
         )
         self.assertEqual(
             response.context["pending_tasks_count"],
-            get_user_model().objects.get(pk=1).tasks.filter(is_completed=False).count(),
+            worker_tasks.filter(is_completed=False).count(),
         )
 
     def test_correct_pending_tasks(self):
+        worker_tasks = get_user_model().objects.get(pk=1).tasks
         response = self.client.get(WORKER_DETAIL_URL)
         self.assertIn("pending_tasks", response.context)
         self.assertEqual(
             list(response.context["pending_tasks"]),
-            list(get_user_model().objects.get(pk=1).tasks.filter(is_completed=False))
+            list(worker_tasks.filter(is_completed=False))
         )
         for task in response.context["pending_tasks"]:
+            all_task_assignees = Task.objects.get(pk=task.pk).assignees
             self.assertEqual(
                 list(task.other_assignees),
-                list(Task.objects.get(pk=task.pk).assignees.exclude(id=self.user.id)),
+                list(
+                    all_task_assignees.exclude(id=self.user.id)
+                ),
             )
 
 
@@ -149,7 +154,10 @@ class WorkerDeleteTests(TestCase):
     def test_correct_template_used(self):
         response = self.client.get(WORKER_DELETE_URL)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "task_manager/worker_confirm_delete.html")
+        self.assertTemplateUsed(
+            response,
+            "task_manager/worker_confirm_delete.html"
+        )
 
     def test_worker_deleted(self):
         response = self.client.post(WORKER_DELETE_URL)
@@ -157,7 +165,9 @@ class WorkerDeleteTests(TestCase):
         self.assertFalse(get_user_model().objects.filter(pk=1).exists())
 
     def test_correct_redirect_after_delete_other_worker(self):
-        response = self.client.post(reverse("task-manager:worker-delete", kwargs={"pk": 2}))
+        response = self.client.post(
+            reverse("task-manager:worker-delete", kwargs={"pk": 2})
+        )
         self.assertRedirects(response, WORKER_LIST_URL)
 
     def test_correct_redirect_after_delete_yourself(self):

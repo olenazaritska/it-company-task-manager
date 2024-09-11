@@ -4,6 +4,7 @@ from django.conf import settings
 
 register = template.Library()
 
+
 @register.filter
 def image_exists(username):
     image_path = f"static/assets/img/{username}.jpg"

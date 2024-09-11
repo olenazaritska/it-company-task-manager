@@ -26,13 +26,17 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         worker = self.object
-        context['completed_tasks_count'] = worker.tasks.filter(is_completed=True).count()
-        context['pending_tasks_count'] = worker.tasks.filter(is_completed=False).count()
+        context["completed_tasks_count"] = (
+            worker.tasks.filter(is_completed=True).count()
+        )
+        context["pending_tasks_count"] = (
+            worker.tasks.filter(is_completed=False).count()
+        )
 
         pending_tasks = worker.tasks.filter(is_completed=False)
         for task in pending_tasks:
             task.other_assignees = task.assignees.exclude(id=worker.id)
-        context['pending_tasks'] = pending_tasks
+        context["pending_tasks"] = pending_tasks
 
         return context
 
@@ -48,7 +52,10 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = WorkerUpdateForm
 
     def get_success_url(self):
-        return reverse_lazy("task-manager:worker-detail", kwargs={"pk": self.object.pk})
+        return reverse_lazy(
+            "task-manager:worker-detail",
+            kwargs={"pk": self.object.pk}
+        )
 
     def dispatch(self, request, *args, **kwargs):
         worker = self.get_object()
@@ -68,10 +75,10 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        completed_filter = self.request.GET.get('completed')
-        if completed_filter == 'true':
+        completed_filter = self.request.GET.get("completed")
+        if completed_filter == "true":
             queryset = queryset.filter(is_completed=True)
-        elif completed_filter == 'false':
+        elif completed_filter == "false":
             queryset = queryset.filter(is_completed=False)
         return queryset
 
@@ -83,7 +90,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        form.fields.pop('is_completed')
+        form.fields.pop("is_completed")
         return form
 
 

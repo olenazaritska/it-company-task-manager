@@ -40,10 +40,18 @@ class TaskAdmin(admin.ModelAdmin):
     )
 
     search_fields = ("name",)
-    list_filter = ("priority", "deadline", "is_completed", "task_type", "assignees",)
+    list_filter = (
+        "priority",
+        "deadline",
+        "is_completed",
+        "task_type",
+        "assignees",
+    )
 
     def get_assignees(self, obj):
-        return ", ".join([f"{a.first_name} {a.last_name}" for a in obj.assignees.all()])
+        return ", ".join(
+            [f"{a.first_name} {a.last_name}" for a in obj.assignees.all()]
+        )
 
 
 admin.site.register(TaskType)
