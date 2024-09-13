@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -9,7 +11,7 @@ from task_manager.models import Task
 class AdminSiteTests(TestCase):
     fixtures = ["it_company_task_manager_db_data.json"]
 
-    def convert_deadline(self, deadline):
+    def convert_deadline(self, deadline: datetime) -> str:
         formatted_date = formats.date_format(deadline, "N j, Y")
 
         if deadline.hour == 12 and deadline.minute == 0:
@@ -23,12 +25,12 @@ class AdminSiteTests(TestCase):
 
         return formatted_datetime
 
-    def setUp(self):
+    def setUp(self) -> None:
         self.client = Client()
         self.admin_user = get_user_model().objects.get(pk=1)
         self.client.force_login(self.admin_user)
 
-    def test_worker_list_display_has_position(self):
+    def test_worker_list_display_has_position(self) -> None:
         url = reverse("admin:task_manager_worker_changelist")
         response = self.client.get(url)
         self.assertContains(
@@ -36,7 +38,7 @@ class AdminSiteTests(TestCase):
             get_user_model().objects.get(pk=1).position
         )
 
-    def test_worker_change_has_position(self):
+    def test_worker_change_has_position(self) -> None:
         url = reverse("admin:task_manager_worker_change", args=[1])
         response = self.client.get(url)
         self.assertContains(
@@ -44,7 +46,7 @@ class AdminSiteTests(TestCase):
             get_user_model().objects.get(pk=1).position
         )
 
-    def test_worker_add_had_additional_info(self):
+    def test_worker_add_had_additional_info(self) -> None:
         url = reverse("admin:task_manager_worker_add")
         response = self.client.get(url)
         self.assertContains(response, "Additional info")
@@ -54,7 +56,7 @@ class AdminSiteTests(TestCase):
         self.assertContains(response, "Position:")
         self.assertContains(response, "Staff status")
 
-    def test_task_list_display_has_all_required_fields(self):
+    def test_task_list_display_has_all_required_fields(self) -> None:
         url = reverse("admin:task_manager_task_changelist")
         response = self.client.get(url)
         self.assertContains(response, Task.objects.get(pk=1).name)
@@ -75,7 +77,7 @@ class AdminSiteTests(TestCase):
             )
         )
 
-    def test_task_list_display_has_search_field(self):
+    def test_task_list_display_has_search_field(self) -> None:
         url = reverse("admin:task_manager_task_changelist")
         response = self.client.get(url)
         self.assertContains(
@@ -83,7 +85,7 @@ class AdminSiteTests(TestCase):
             '<input type="submit" value="Search">'
         )
 
-    def test_task_list_display_has_all_filters(self):
+    def test_task_list_display_has_all_filters(self) -> None:
         url = reverse("admin:task_manager_task_changelist")
         response = self.client.get(url)
         self.assertContains(response, "By priority")

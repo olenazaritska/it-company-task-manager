@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
@@ -44,13 +46,13 @@ class WorkerUpdateForm(forms.ModelForm):
             "position",
         )
 
-    def clean_password1(self):
+    def clean_password1(self) -> str | None:
         password1 = self.cleaned_data.get("password1")
         if password1:
             validate_password(password1, self.instance)
         return password1
 
-    def clean(self):
+    def clean(self) -> dict[str, Any]:
         cleaned_data = super().clean()
         password1 = cleaned_data.get("password1")
         password2 = cleaned_data.get("password2")
@@ -63,7 +65,7 @@ class WorkerUpdateForm(forms.ModelForm):
                 )
         return cleaned_data
 
-    def save(self, commit=True):
+    def save(self, commit: bool = True) -> Worker:
         worker = super().save(commit=False)
         password1 = self.cleaned_data.get("password1")
 

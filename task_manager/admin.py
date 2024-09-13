@@ -48,7 +48,7 @@ class TaskAdmin(admin.ModelAdmin):
         "assignees",
     )
 
-    def get_assignees(self, obj):
+    def get_assignees(self, obj: Task) -> str:
         return ", ".join(
             [f"{a.first_name} {a.last_name}" for a in obj.assignees.all()]
         )

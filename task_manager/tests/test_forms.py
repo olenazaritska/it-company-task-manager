@@ -9,7 +9,7 @@ from task_manager.models import Position
 class WorkerCreationFormTest(TestCase):
     fixtures = ["it_company_task_manager_db_data.json"]
 
-    def test_form_has_all_fields_specified(self):
+    def test_form_has_all_fields_specified(self) -> None:
         form = WorkerCreationForm()
         expected_fields = [
             "username",
@@ -26,7 +26,7 @@ class WorkerCreationFormTest(TestCase):
             expected_fields
         )
 
-    def test_worker_creation_form_is_valid(self):
+    def test_worker_creation_form_is_valid(self) -> None:
         data = {
             "username": "test_user",
             "email": "email@example.com",
@@ -39,7 +39,7 @@ class WorkerCreationFormTest(TestCase):
         form = WorkerCreationForm(data=data)
         self.assertTrue(form.is_valid())
 
-    def test_worker_creation_form_is_not_valid(self):
+    def test_worker_creation_form_is_not_valid(self) -> None:
         data = {
             "username": "test_user",
             "email": "email",
@@ -56,7 +56,7 @@ class WorkerCreationFormTest(TestCase):
 class WorkerUpdateFormTest(TestCase):
     fixtures = ["it_company_task_manager_db_data.json"]
 
-    def test_form_has_all_fields_specified(self):
+    def test_form_has_all_fields_specified(self) -> None:
         form = WorkerUpdateForm()
         expected_fields = [
             "username",
@@ -72,7 +72,7 @@ class WorkerUpdateFormTest(TestCase):
             expected_fields
         )
 
-    def test_worker_update_form_is_valid_with_no_password(self):
+    def test_worker_update_form_is_valid_with_no_password(self) -> None:
         data = {
             "username": "test_user",
             "email": "email@example.com",
@@ -83,7 +83,7 @@ class WorkerUpdateFormTest(TestCase):
         form = WorkerUpdateForm(data=data)
         self.assertTrue(form.is_valid())
 
-    def test_worker_update_form_is_not_valid_with_no_password(self):
+    def test_worker_update_form_is_not_valid_with_no_password(self) -> None:
         data = {
             "username": "test_user",
             "email": "email@example.com",
@@ -93,7 +93,7 @@ class WorkerUpdateFormTest(TestCase):
         form = WorkerUpdateForm(data=data)
         self.assertFalse(form.is_valid())
 
-    def test_worker_update_form_is_valid_with_password(self):
+    def test_worker_update_form_is_valid_with_password(self) -> None:
         data = {
             "username": "test_user",
             "email": "email@example.com",
@@ -106,7 +106,7 @@ class WorkerUpdateFormTest(TestCase):
         form = WorkerUpdateForm(data=data)
         self.assertTrue(form.is_valid())
 
-    def test_worker_update_form_is_not_valid_with_password(self):
+    def test_worker_update_form_is_not_valid_with_password(self) -> None:
         data = {
             "username": "test_user",
             "email": "email@example.com",
@@ -123,7 +123,7 @@ class WorkerUpdateFormTest(TestCase):
 class TaskFormTest(TestCase):
     fixtures = ["it_company_task_manager_db_data.json"]
 
-    def test_form_has_all_fields_specified(self):
+    def test_form_has_all_fields_specified(self) -> None:
         form = TaskForm()
         expected_fields = [
             "name",
@@ -139,18 +139,18 @@ class TaskFormTest(TestCase):
             expected_fields
         )
 
-    def test_deadline_field_is_datetimeinput(self):
+    def test_deadline_field_is_datetimeinput(self) -> None:
         form = TaskForm()
         self.assertIsInstance(form.fields["deadline"].widget, DateTimeInput)
 
-    def test_assignees_field_is_checkboxselectmultiple(self):
+    def test_assignees_field_is_checkboxselectmultiple(self) -> None:
         form = TaskForm()
         self.assertIsInstance(
             form.fields["assignees"].widget,
             forms.CheckboxSelectMultiple
         )
 
-    def test_task_form_is_valid(self):
+    def test_task_form_is_valid(self) -> None:
         data = {
             "name": "test_task",
             "deadline": "2024-09-20T12:00:00Z",
@@ -160,7 +160,7 @@ class TaskFormTest(TestCase):
         form = TaskForm(data=data)
         self.assertTrue(form.is_valid())
 
-    def test_task_form_is_not_valid(self):
+    def test_task_form_is_not_valid(self) -> None:
         data = {
             "name": "test_task",
             "deadline": "2024-09-20T12:00:00Z",

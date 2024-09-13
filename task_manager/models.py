@@ -27,14 +27,14 @@ class Task(models.Model):
     class Meta:
         ordering = ["deadline"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
 class TaskType(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -45,12 +45,12 @@ class Worker(AbstractUser):
         related_name="workers"
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.first_name} {self.last_name} ({self.position.name})"
 
 
 class Position(models.Model):
     name = models.CharField(max_length=255)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
