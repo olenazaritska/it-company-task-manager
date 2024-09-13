@@ -60,7 +60,12 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
             kwargs={"pk": self.object.pk}
         )
 
-    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+    def dispatch(
+            self,
+            request: HttpRequest,
+            *args: Any,
+            **kwargs: Any
+    ) -> HttpResponse:
         worker = self.get_object()
         if worker.id != request.user.id:
             return HttpResponseForbidden()
