@@ -1,0 +1,13 @@
+asgiref==3.8.1
+crispy-bootstrap4==2024.1
+Django==5.1
+django-crispy-forms==2.3
+django-formset==1.5
+flake8==7.1.1
+flake8-quotes==3.4.0
+mccabe==0.7.0
+pycodestyle==2.12.1
+pyflakes==3.2.0
+python-dotenv==1.0.1
+setuptools==74.1.2
+sqlparse==0.5.1
