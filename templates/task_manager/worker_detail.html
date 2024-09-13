@@ -1,0 +1,90 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} - Team member {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block body_class %} blog-author bg-gray-100 {% endblock body_class %}
+
+{% block content %}
+  
+    {% include "includes/navigation-light.html" %}
+  
+  <section class="py-sm-7 py-5 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div class="row py-lg-7 py-5">
+            <!-- Worker Image -->
+            <div class="col-lg-3 col-md-5 position-relative my-auto">
+              <img class="img border-radius-lg max-width-200 w-100 position-relative z-index-2" src="{{ ASSETS_ROOT }}/img/{{ worker.username }}.jpg" alt="{{ worker.first_name }} {{ worker.last_name }}">
+            </div>
+  
+            <!-- Worker Details -->
+            <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4 class="mb-0">{{ worker.first_name }} {{ worker.last_name }}</h4>
+                <!-- Action Buttons -->
+                <div class="d-flex">
+                  {% if user.id == worker.id %}
+                    <a href="{% url 'task-manager:worker-update' worker.id %}" class="btn btn-primary me-2">Update Info</a>
+                  {% endif %}
+                  <a href="{% url 'task-manager:worker-delete' worker.id %}" class="btn btn-danger">Remove from the Team</a>
+                </div>
+              </div>
+  
+              <!-- Worker Email and Position -->
+              <p class="mb-2"><strong>Email:</strong> {{ worker.email }}</p>
+              <p class="mb-2"><strong>Position:</strong> {{ worker.position.name }}</p>
+  
+              <!-- Task Statistics -->
+              <div class="row mb-4">
+                <div class="col-auto">
+                  <span class="h6">{{ completed_tasks_count }}</span>
+                  <span>Completed Tasks</span>
+                </div>
+                <div class="col-auto">
+                  <span class="h6">{{ pending_tasks_count }}</span>
+                  <span>Pending Tasks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Currently Working On Section -->
+          <div class="row mt-5">
+            <div class="col-12">
+              <h5>Currently working on</h5>
+              {% for task in pending_tasks %}
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <h6 class="card-title">{{ task.name }}</h6>
+                    <p class="card-text">{{ task.description }}</p>
+                    {% if task.other_assignees %}
+                      <p class="card-text text-muted small"><strong>Working together with:</strong>
+                        {% for assignee in task.other_assignees %}
+                          <a href="{% url 'task-manager:worker-detail' assignee.id %}">
+                            {{ assignee.first_name }} {{ assignee.last_name }}
+                          </a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      </p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script src="{{ ASSETS_ROOT }}/js/soft-design-system.min.js?v=1.0.1" type="text/javascript"></script>
+
+{% endblock javascripts %}

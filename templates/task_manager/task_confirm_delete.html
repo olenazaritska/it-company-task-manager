@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+  
+<section class="py-sm-7 py-5 position-relative bg-info">
+    <div class="container position-relative z-index-2" style="min-height: 60vh;">
+        <div class="row">
+            <div class="col-12 col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Title -->
+                        <h3 class="text-center mb-4">Delete the task</h3>
+                        
+                        <!-- Confirmation Message -->
+                      <p class="text-center">Are you sure you want to delete the task <b>{{ object }}</b> from the task board?</p>
+
+                        <!-- Delete Confirmation Form -->
+                        <form action="" method="post" novalidate>
+                            {% csrf_token %}
+                            <div class="d-flex justify-content-center">
+                                <input type="submit" value="Yes, Delete" class="btn btn-danger me-2">
+                                <a href="{% url 'task-manager:task-list' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+{% endblock %}

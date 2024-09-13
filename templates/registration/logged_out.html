@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<section class="py-sm-10 py-8 position-relative bg-info">
+    <!-- Background Image -->
+    <div class="position-absolute top-0 w-100 h-100" style="background-image: url('{% static "assets/img/office-dark.jpg" %}'); background-size: cover; background-position: center;">
+        <span class="w-100 h-100 position-absolute opacity-8 bg-dark"></span>
+    </div>
+    <div class="container position-relative z-index-2" style="min-height: 40vh;">
+        <div class="row">
+            <div class="col-12 col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <!-- Logged Out Message -->
+                        <h3 class="mb-4">You have been logged out!</h3>
+                        <p class="mb-4">Want to get back?</p>
+                        <!-- Login Again Link -->
+                        <a href="{% url 'login' %}" class="btn btn-primary">Click here to log in again</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

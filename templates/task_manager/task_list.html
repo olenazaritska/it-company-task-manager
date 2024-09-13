@@ -1,0 +1,144 @@
+ {% extends "layouts/base.html" %}
+
+{% block title %} - Tasks {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+          xmlns="http://www.w3.org/1999/html"></script>
+{% endblock stylesheets %}
+
+{% block body_class %} blog-author bg-gray-100 {% endblock body_class %}
+
+
+{% block content %}
+  {% include "includes/navigation-light.html" %}
+
+  <section class="py-7 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div class="row py-4">
+            <div class="col-lg-12 col-md-12 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4 class="mb-0">Team Tasks</h4>
+                <div class="d-flex">
+                  <div>
+                    <a href="{% url 'task-manager:task-create' %}" class="btn bg-gradient-white w-auto me-2 btn-light mb-1">Create new task</a>
+                  </div>
+                  <div class="dropdown" style="flex-grow: 1;">
+                    <button class="btn btn-secondary w-100" type="button" id="completedFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-filter"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="completedFilterDropdown">
+                      <li><a class="dropdown-item" href="{% url 'task-manager:task-list' %}">All</a></li>
+                      <li><a class="dropdown-item" href="{% url 'task-manager:task-list' %}?completed=true">Completed</a></li>
+                      <li><a class="dropdown-item" href="{% url 'task-manager:task-list' %}?completed=false">Pending</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-2">
+                <div class="card-body px-0 pt-1 pb-1">
+                  <div class="table-responsive px-8 pt-2" style="height: 700px; overflow-y: auto;">
+                    <table class="table table-responsive-md align-items-center mb-0">
+                      <thead>
+                        <tr>
+                          <th class="text-s">Name</th>
+                          <th class="text-s">Deadline</th>
+                          <th class="text-s">Completed</th>
+                          <th class="text-s">Priority</th>
+                          <th class="text-s">Type</th>
+                          <th class="text-s">Assignees</th>
+                          <th class="text-s"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for task in task_list %}
+                        <tr>
+                          <td>
+                            <button type="button" class="btn btn-link text-sm p-0 text-secondary" style="text-transform: none;" data-bs-toggle="modal" data-bs-target="#taskModal{{ task.id }}">
+                              {{ task.name }}
+                            </button>
+                          </td>
+                          <td>
+                            <p class="text-xs">{{ task.deadline|date:"d/m/Y" }}</p>
+                          </td>
+                          <td>
+                            {% if task.is_completed %}
+                              <span class="badge bg-gradient-success text-white">Done</span>
+                            {% else %}
+                              <span class="badge bg-gradient-secondary text-white">Pending</span>
+                            {% endif %}
+                          </td>
+                          <td>
+                            {% if task.get_priority_display == "High" %}
+                              <span class="badge bg-gradient-danger">High</span>
+                            {% elif task.get_priority_display == "Medium" %}
+                              <span class="badge bg-gradient-warning text-white">Medium</span>
+                            {% elif task.get_priority_display == "Low" %}
+                              <span class="badge bg-gradient-info">Low</span>
+                            {% endif %}
+                          </td>
+                          <td>
+                            <span class="badge bg-gradient-primary">{{ task.task_type.name }}</span>
+                          </td>
+                          <td>
+                            <p class="text-xs font-weight-bold mb-0 text-secondary">
+                              {% for assignee in task.assignees.all %}
+                                {{ assignee.first_name }} {{ assignee.last_name }}{% if not forloop.last %}, {% endif %}
+                              {% endfor %}
+                            </p>
+                          </td>
+                          <td class="align-middle">
+                            <div class="dropdown">
+                              <button class="btn btn-link text-secondary mb-0" type="button" id="dropdownMenuButton{{ task.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-ellipsis-v text-xs"></i>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton{{ task.id }}">
+                                <li><a class="dropdown-item" href="{% url 'task-manager:task-update' task.id %}">Edit</a></li>
+                                <li><a class="dropdown-item text-danger" href="{% url 'task-manager:task-delete' task.id %}">Delete</a></li>
+                              </ul>
+                            </div>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modals Section -->
+  {% for task in task_list %}
+  <!-- Modal -->
+  <div class="modal fade" id="taskModal{{ task.id }}" tabindex="-1" aria-labelledby="taskModalLabel{{ task.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="taskModalLabel{{ task.id }}">Task Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{ task.description }}
+        </div>
+        <div class="modal-footer justify-content-end">
+          <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock content %}
+
+
+
+{% block javascripts %}
+  <script src="{{ ASSETS_ROOT }}/js/soft-design-system.min.js?v=1.0.1" type="text/javascript"></script>
+{% endblock %}

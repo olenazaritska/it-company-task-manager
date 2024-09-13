@@ -1,0 +1,174 @@
+{% extends 'layouts/base.html' %}
+{% load image_exists %}
+
+{% block title %} - Team {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block body_class %}{% endblock body_class %}
+
+{% block content %}
+
+  {% include "includes/navigation-transparent.html" %}
+  
+  <section class="pt-sm-7 pb-5 position-relative bg-info overflow-hidden">
+    <div class="container">
+      <div class="row px-3">
+        <div class="d-flex justify-content-between align-items-center mb-2 pt-4">
+          <h4 class="mb-0 text-white">Our Team</h4>
+          <div>
+            <a href="{% url 'task-manager:worker-create' %}" class="btn bg-gradient-white w-auto me-2 btn-light mb-1">Add new team member</a>
+          </div>
+        </div>
+      </div>
+      <div class="container" style="height: 500px; overflow-y: auto;">
+        {% if worker_list %}
+          {% for worker in worker_list %}
+            {% if forloop.counter0|divisibleby:2 %}
+              <!-- Start a new row every 2 workers -->
+              <div class="row">
+            {% endif %}
+        
+            <!-- Create a column for each worker -->
+            <div class="col-lg-6 col-12">
+              <a href="{% url "task-manager:worker-detail" worker.id %}">
+                <div class="card card-profile overflow-hidden">
+                  <div class="row">
+                    <!-- Image column (leave empty if no image exists) -->
+                    <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
+                      {% if worker.username|image_exists %}
+                        <div class="p-3 pe-0">
+                          <img class="w-100 border-radius-md" src="{{ ASSETS_ROOT }}/img/{{ worker.username }}.jpg">
+                        </div>
+                      {% else %}
+                        <div class="p-3 pe-0">
+                          <!-- Empty space where the image would be -->
+                        </div>
+                      {% endif %}
+                    </div>
+        
+                    <!-- Card body with text -->
+                    <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
+                      <div class="card-body">
+                        <h5 class="mb-0">{{ worker.first_name }} {{ worker.last_name }}</h5>
+                        <h6 class="text-info">{{ worker.position.name }}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <br>
+            </div>
+        
+            {% if forloop.counter|divisibleby:2 or forloop.last %}
+              <!-- Close the row after every 2 workers or at the end of the list -->
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <p class="mb-0">There aren't any workers registered yet...</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  
+{% endblock content %}
+
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script src="{{ ASSETS_ROOT }}/js/plugins/countup.min.js"></script>
+  <script src="{{ ASSETS_ROOT }}/js/soft-design-system.min.js?v=1.0.1" type="text/javascript"></script>
+  <script>
+    // get the element to animate
+    var element = document.getElementById('count-stats');
+    var elementHeight = element.clientHeight;
+
+    // listen for scroll event and call animate function
+
+    document.addEventListener('scroll', animate);
+
+    // check if element is in view
+    function inView() {
+      // get window height
+      var windowHeight = window.innerHeight;
+      // get number of pixels that the document is scrolled
+      var scrollY = window.scrollY || window.pageYOffset;
+      // get current scroll position (distance from the top of the page to the bottom of the current viewport)
+      var scrollPosition = scrollY + windowHeight;
+      // get element position (distance from the top of the page to the bottom of the element)
+      var elementPosition = element.getBoundingClientRect().top + scrollY + elementHeight;
+
+      // is scroll position greater than element position? (is element in view?)
+      if (scrollPosition > elementPosition) {
+        return true;
+      }
+
+      return false;
+    }
+
+    var animateComplete = true;
+    // animate element when it is in view
+    function animate() {
+
+      // is element in view?
+      if (inView()) {
+        if (animateComplete) {
+          if (document.getElementById('state1')) {
+            const countUp = new CountUp('state1', document.getElementById("state1").getAttribute("countTo"));
+            if (!countUp.error) {
+              countUp.start();
+            } else {
+              console.error(countUp.error);
+            }
+          }
+          if (document.getElementById('state2')) {
+            const countUp1 = new CountUp('state2', document.getElementById("state2").getAttribute("countTo"));
+            if (!countUp1.error) {
+              countUp1.start();
+            } else {
+              console.error(countUp1.error);
+            }
+          }
+          if (document.getElementById('state3')) {
+            const countUp2 = new CountUp('state3', document.getElementById("state3").getAttribute("countTo"));
+            if (!countUp2.error) {
+              countUp2.start();
+            } else {
+              console.error(countUp2.error);
+            };
+          }
+          animateComplete = false;
+        }
+      }
+    }
+
+    if (document.getElementById('typed')) {
+      var typed = new Typed("#typed", {
+        stringsElement: '#typed-strings',
+        typeSpeed: 90,
+        backSpeed: 90,
+        backDelay: 200,
+        startDelay: 500,
+        loop: true
+      });
+    }
+  </script>
+  <script>
+    if (document.getElementsByClassName('page-header')) {
+      window.addEventListener('scroll', function() {
+        var scrollPosition = window.pageYOffset;
+        var bgParallax = document.querySelector('.page-header');
+        var limit = bgParallax.offsetTop + bgParallax.offsetHeight;
+        if (scrollPosition > bgParallax.offsetTop && scrollPosition <= limit) {
+          bgParallax.style.backgroundPositionY = (50 - 10 * scrollPosition / limit * 3) + '%';
+        } else {
+          bgParallax.style.backgroundPositionY = '50%';
+        }
+      });
+    }
+  </script>
+
+{% endblock javascripts %}
