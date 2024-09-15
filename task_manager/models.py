@@ -45,6 +45,9 @@ class Worker(AbstractUser):
         related_name="workers"
     )
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name} ({self.position.name})"
 
