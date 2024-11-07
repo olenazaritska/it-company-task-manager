@@ -1,0 +1,23 @@
+
+  <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
+    <div class="container">
+      <a class="navbar-brand  text-white " href="/" rel="tooltip" data-placement="bottom">
+        Soft IT Company
+      </a>
+      <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+        <ul class="navbar-nav navbar-nav-hover w-100">
+          <li class="nav-item ms-lg-auto">
+            <!-- Logout Form -->
+            <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+              {% csrf_token %}
+            </form>
+            <a class="nav-link nav-link-icon me-2" href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="fa fa-sign-out me-1"></i>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

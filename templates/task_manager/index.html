@@ -1,0 +1,141 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+  {% include "includes/navigation-transparent.html" %}
+  
+  <header class="bg-gradient-dark">
+    <div class="page-header section-height-85" style="background-image: url('{{ ASSETS_ROOT }}/img/office-dark.jpg');">
+      <span class="mask bg-gradient-info opacity-8"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center mx-auto my-auto">
+            <h1 class="text-white">Welcome to<br>the task&nbsp;management system</h1>
+            <p class="lead mb-4 text-white opacity-8">
+              Organize, track, and complete tasks effortlessly with the intuitive system, designed to streamline your workflow and boost productivity.
+            </p>
+            <a href="{% url "task-manager:worker-list" %}" class="btn btn-white w-auto me-1 mb-0 btn-lg">
+              Team members
+            </a>
+            <a href="{% url 'task-manager:task-list' %}" class="btn btn-white w-auto me-1 mb-0 btn-lg">
+              Task board
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="position-absolute w-100 z-index-1 bottom-0">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="moving-waves">
+            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
+            <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
+            <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
+            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,1" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  </header>
+  
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script src="{{ ASSETS_ROOT }}/js/plugins/countup.min.js"></script>
+  <script src="{{ ASSETS_ROOT }}/js/soft-design-system.min.js?v=1.0.1" type="text/javascript"></script>
+  <script>
+    // get the element to animate
+    var element = document.getElementById('count-stats');
+    var elementHeight = element.clientHeight;
+
+    // listen for scroll event and call animate function
+
+    document.addEventListener('scroll', animate);
+
+    // check if element is in view
+    function inView() {
+      // get window height
+      var windowHeight = window.innerHeight;
+      // get number of pixels that the document is scrolled
+      var scrollY = window.scrollY || window.pageYOffset;
+      // get current scroll position (distance from the top of the page to the bottom of the current viewport)
+      var scrollPosition = scrollY + windowHeight;
+      // get element position (distance from the top of the page to the bottom of the element)
+      var elementPosition = element.getBoundingClientRect().top + scrollY + elementHeight;
+
+      // is scroll position greater than element position? (is element in view?)
+      if (scrollPosition > elementPosition) {
+        return true;
+      }
+
+      return false;
+    }
+
+    var animateComplete = true;
+    // animate element when it is in view
+    function animate() {
+
+      // is element in view?
+      if (inView()) {
+        if (animateComplete) {
+          if (document.getElementById('state1')) {
+            const countUp = new CountUp('state1', document.getElementById("state1").getAttribute("countTo"));
+            if (!countUp.error) {
+              countUp.start();
+            } else {
+              console.error(countUp.error);
+            }
+          }
+          if (document.getElementById('state2')) {
+            const countUp1 = new CountUp('state2', document.getElementById("state2").getAttribute("countTo"));
+            if (!countUp1.error) {
+              countUp1.start();
+            } else {
+              console.error(countUp1.error);
+            }
+          }
+          if (document.getElementById('state3')) {
+            const countUp2 = new CountUp('state3', document.getElementById("state3").getAttribute("countTo"));
+            if (!countUp2.error) {
+              countUp2.start();
+            } else {
+              console.error(countUp2.error);
+            };
+          }
+          animateComplete = false;
+        }
+      }
+    }
+
+    if (document.getElementById('typed')) {
+      var typed = new Typed("#typed", {
+        stringsElement: '#typed-strings',
+        typeSpeed: 90,
+        backSpeed: 90,
+        backDelay: 200,
+        startDelay: 500,
+        loop: true
+      });
+    }
+  </script>
+  <script>
+    if (document.getElementsByClassName('page-header')) {
+      window.addEventListener('scroll', function() {
+        var scrollPosition = window.pageYOffset;
+        var bgParallax = document.querySelector('.page-header');
+        var limit = bgParallax.offsetTop + bgParallax.offsetHeight;
+        if (scrollPosition > bgParallax.offsetTop && scrollPosition <= limit) {
+          bgParallax.style.backgroundPositionY = (50 - 10 * scrollPosition / limit * 3) + '%';
+        } else {
+          bgParallax.style.backgroundPositionY = '50%';
+        }
+      });
+    }
+  </script>
+
+{% endblock javascripts %}
