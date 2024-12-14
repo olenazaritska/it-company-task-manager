@@ -6,6 +6,12 @@ Project overview
 it_company_task_manager is a web application for organizing workflow inside a team. 
 It includes a task board and a team members managing functionality.
 
+Check it out!
+--------
+
+[IT company task manager deployed on Render](https://it-company-task-manager-4fm1.onrender.com/)
+
+
 Setup
 --------
 To set up the project on your local machine, follow these steps:
@@ -40,7 +46,7 @@ python manage.py runserver
 
 Usage
 --------
-After loading data from fixture you can use following superuser (or create another one by yourself):
+You can use following superuser:
   - Login: `john_doe`
   - Password: `1qazcde3`
 
